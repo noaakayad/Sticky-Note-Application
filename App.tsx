@@ -35,17 +35,16 @@ function App() {
    content: "",
    label: Label.other,
  };
+
  const [createNote, setCreateNote] = useState(initialNote);
 
-
- const createNoteHandler = (event : React.FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-  const newNote = {
-    ...createNote, id: Math.max(...notes.map(note => note.id)) + 1, 
-  };
-
-  setNotes([...notes, newNote]); 
-  setCreateNote(initialNote); 
+ const createNoteHandler = (event: React.FormEvent) => {
+   event.preventDefault();
+   console.log("title: ", createNote.title);
+   console.log("content: ", createNote.content);
+   createNote.id = notes.length + 1;
+   setNotes([createNote, ...notes]);
+   setCreateNote(initialNote);
  };
 
  const deleteNote = (note : Note) => {
